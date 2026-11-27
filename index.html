@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KedaiPremium</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='48' fill='%23b8f5d0'/%3E%3Cg transform='translate(12 18) scale(.75)'%3E%3Cpath d='M10 56 L6 16 L30 36 L48 8 L66 36 L90 16 L86 56 Z' fill='%230b0b0c' stroke='%230b0b0c' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='48' cy='36' r='7' fill='%23b8f5d0'/%3E%3Crect x='10' y='58' width='76' height='9' rx='4.5' fill='%23128c4a'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -32,10 +33,17 @@ img{max-width:100%}
 nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .navin{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:12px max(5vw,16px);max-width:1240px;margin:0 auto}
 .logo{font:700 21px "Space Grotesk",sans-serif;text-decoration:none;display:flex;align-items:center;gap:9px}
-.logo i{width:26px;height:26px;border-radius:7px;background:var(--mint);border:2px solid var(--ink);display:block}
+.logo .crown{width:34px;height:25px;color:var(--ink);flex:none;transition:transform .3s ease}
+.logo:hover .crown{transform:rotate(-8deg) scale(1.08)}
 .links{display:flex;gap:18px;flex-wrap:wrap;margin-inline-start:auto;font-size:15px}
 .links a{text-decoration:none;color:var(--mute)}
 .links a:hover{color:var(--ink)}
+.lang{display:inline-flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden}
+.lang button{min-height:40px;min-width:46px;padding:0 12px;border:0;background:transparent;color:var(--ink);font:700 14px Inter,sans-serif;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.lang button:focus-visible{outline:3px solid #2f7dff;outline-offset:-3px}
+@media(max-width:600px){.navin .btn.wa{display:none}.navin .lang:first-of-type{margin-inline-start:auto}}
+.fx{font-size:13.5px;color:var(--mute);margin-top:4px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;font:600 16px Inter,sans-serif;text-decoration:none;border:2px solid var(--acc);cursor:pointer;white-space:nowrap}
 .btn.pri{background:var(--acc);color:var(--accInk)}
 .btn.sec{background:transparent;color:var(--ink)}
@@ -57,11 +65,58 @@ nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,t
 .search{margin-inline-start:auto;position:relative}
 .search input{font:16px Inter,sans-serif;min-height:44px;width:min(260px,100%);padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-.prod{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.prod{overflow:hidden;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}
 .prod .top{display:flex;align-items:center;gap:12px}
+.cover{position:relative;height:118px;margin:-18px -18px 4px;border-radius:14px 14px 0 0;overflow:hidden;display:flex;align-items:flex-end;padding:14px 16px;color:#fff;background:linear-gradient(135deg,var(--h1),var(--h2))}
+.cover::before{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.14);right:-40px;top:-60px;transition:transform .5s ease}
+.cover::after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.1);right:60px;bottom:-50px}
+.prod:hover .cover::before{transform:scale(1.25)}
+.cover .big{position:relative;z-index:1;font:700 30px/1 "Space Grotesk",sans-serif;letter-spacing:-.02em;text-shadow:0 2px 10px rgba(0,0,0,.18)}
+.cover svg{position:absolute;z-index:1;right:16px;top:16px;width:34px;height:34px;opacity:.95}
+.prod .meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
+
 .mono{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font:700 19px "Space Grotesk",sans-serif;background:var(--mint2);border:1.5px solid var(--line)}
 .prod .cat{font-size:13px;color:var(--mute)}
 .prod p{font-size:15px;color:var(--mute);flex:1}
+.pk{list-style:none;margin:0;padding:0;display:grid;gap:6px;border-top:1px dashed var(--line);padding-top:10px}
+.pk li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:10px;font-size:14px}
+.pk b{font:700 16px "Space Grotesk",sans-serif;white-space:nowrap;text-align:right}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--mint);color:light-dark(#0b0b0c,#e9fff1)}
+.note{font-size:13.5px;font-weight:600;color:light-dark(#b42318,#ff8a7a);background:light-dark(#fff1ef,#2a1512);border-radius:10px;padding:8px 10px}
+.info b{display:block;font-weight:700;margin-bottom:4px}
+.info{font-size:13.5px;line-height:1.5;color:var(--ink);background:var(--mint2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.from{position:absolute;z-index:1;left:16px;top:14px;font:700 13px Inter,sans-serif;background:rgba(255,255,255,.95);color:#0b0b0c;padding:4px 10px;border-radius:999px;box-shadow:0 4px 12px -4px rgba(0,0,0,.3)}
+.group{margin-top:34px}
+.group:first-child{margin-top:0}
+.ghead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ghead h3{font-size:24px}
+.ghead span{font-size:14px;color:var(--mute)}
+.ghead::after{content:"";flex:1;height:2px;background:var(--line)}
+.why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:26px}
+.wi{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:22px;transition:transform .25s ease,border-color .25s ease}
+.wi:hover{transform:translateY(-4px);border-color:var(--ink)}
+.wi .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--mint);margin-bottom:14px}
+.wi .ic svg{width:28px;height:28px}
+.wi h3{font-size:19px;margin-bottom:6px}
+.wi p{color:var(--mute);font-size:15px}
+.trust{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;animation:rise .8s .15s cubic-bezier(.2,.8,.2,1) both}
+.trust span{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;background:rgba(255,255,255,.55);border:1.5px solid color-mix(in srgb,var(--ink) 20%,transparent);padding:6px 12px;border-radius:999px}
+:root[data-theme=dark] .trust span{background:rgba(0,0,0,.25)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .trust span{background:rgba(0,0,0,.25)}}
+.trust span::before{content:"";width:8px;height:8px;border-radius:50%;background:#128c4a}
+.totop{position:fixed;left:18px;bottom:18px;z-index:9;width:48px;height:48px;border-radius:50%;border:2px solid var(--ink);background:var(--bg);color:var(--ink);font:700 20px Inter,sans-serif;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;transform:translateY(10px)}
+.totop.on{opacity:1;pointer-events:auto;transform:none}
+@media(max-width:900px){.why{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.why{grid-template-columns:minmax(0,1fr)}}
+.prod.lock .cover{filter:grayscale(1) brightness(.75)}
+.prod.lock:hover{transform:none;box-shadow:none;border-color:var(--line)}
+.prod.lock:hover .cover::before{transform:none}
+.locked{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:15px;color:var(--mute);cursor:not-allowed}
+.locked svg{width:18px;height:18px}
+.soonb{background:#0b0b0c;color:#b8f5d0}
+.soonbox{font-size:14px;font-weight:600;border:1.5px dashed var(--line);border-radius:10px;padding:10px;text-align:center;color:var(--mute)}
+.ask{font-size:14px;color:var(--mute);border-top:1px dashed var(--line);padding-top:10px}
 .prod a{align-self:flex-start;font-weight:600;font-size:15px;text-decoration:none;border-bottom:2px solid var(--wa);padding-bottom:1px}
 .empty{padding:28px;border:1.5px dashed var(--line);border-radius:16px;text-align:center;color:var(--mute)}
 .count{font-size:14px;color:var(--mute);margin-top:6px}
@@ -123,33 +178,36 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
 <body>
 <nav>
   <div class="navin">
-    <a class="logo" href="#top"><i></i>KedaiPremium</a>
+    <a class="logo" href="#top"><svg class="crown" viewBox="0 0 96 70" aria-hidden="true"><path d="M10 56 L6 16 L30 36 L48 8 L66 36 L90 16 L86 56 Z" fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><circle cx="48" cy="36" r="7" fill="var(--mint)"/><rect x="10" y="58" width="76" height="9" rx="4.5" fill="#128c4a"/></svg><span><span style="font-weight:500">Kedai</span>Premium</span></a>
     <div class="links">
-      <a href="#produk">Produk</a>
-      <a href="#cara">Cara beli</a>
-      <a href="#soalan">Soalan lazim</a>
-      <a href="#hubungi">Hubungi</a>
+      <a href="#produk" data-t="nProd">Produk</a>
+      <a href="#cara" data-t="nHow">Cara beli</a>
+      <a href="#soalan" data-t="nFaq">Soalan lazim</a>
+      <a href="#hubungi" data-t="nContact">Hubungi</a>
     </div>
-    <a class="btn wa" id="navWa" href="#">WhatsApp kami</a>
+    <div class="lang" role="group" aria-label="Bahasa / Language"><button id="lMs" aria-pressed="true">BM</button><button id="lEn" aria-pressed="false">EN</button></div>
+    <div class="lang" role="group" aria-label="Mata wang / Currency"><button id="cMyr" aria-pressed="true">RM</button><button id="cUsd" aria-pressed="false">USD</button></div>
+    <a class="btn wa" id="navWa" href="#" data-t="waUs">WhatsApp kami</a>
   </div>
 </nav>
 
 <header class="hero band" id="top">
   <div class="wrap heroin">
     <div>
-      <h1>Langganan premium AI, edit video dan streaming di satu tempat</h1>
-      <p class="lead">Pilih aplikasi yang anda perlukan, hubungi kami di WhatsApp, dan akses dihantar terus kepada anda. Mudah, cepat dan dibantu sehingga berjaya log masuk.</p>
+      <h1 data-t="h1">Langganan premium AI, edit video dan streaming di satu tempat</h1>
+      <p class="lead" data-t="lead">Pilih aplikasi yang anda perlukan, hubungi kami di WhatsApp, dan akses dihantar terus kepada anda. Mudah, cepat dan dibantu sehingga berjaya log masuk.</p>
+      <div class="trust"><span data-t="tr1">Full warranty</span><span data-t="tr2">Akaun private</span><span data-t="tr3">Bantuan WhatsApp</span></div>
       <div class="facts">
-        <div><b id="nProd">14</b><span>aplikasi premium</span></div>
-        <div><b>3</b><span>kategori</span></div>
-        <div><b>WhatsApp</b><span>tempahan dan bantuan</span></div>
+        <div><b id="nProd">11</b><span data-t="fApps">aplikasi premium</span></div>
+        <div><b id="nCat">3</b><span data-t="fCats">kategori</span></div>
+        <div><b id="minP">RM18</b><span data-t="fFrom">harga bermula</span></div>
       </div>
       <div class="cta">
-        <a class="btn pri" href="#produk">Lihat semua produk</a>
-        <a class="btn sec" id="heroWa" href="#">Tanya harga</a>
+        <a class="btn pri" href="#produk" data-t="ctaAll">Lihat semua produk</a>
+        <a class="btn sec" id="heroWa" href="#" data-t="ctaAsk">Tanya harga</a>
       </div>
     </div>
-    <div class="fig" id="fig" aria-label="Kad langganan mengikut kategori: AI, edit dan streaming"><svg id="fan" class="fan" role="img"></svg></div>
+    <div class="fig" id="fig"><svg id="fan" class="fan" role="img" aria-label="KedaiPremium"></svg></div>
   </div>
 </header>
 
@@ -157,39 +215,52 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
 
 <section class="band" id="produk">
   <div class="wrap">
-    <h2>Senarai produk kami</h2>
+    <h2 data-t="pTitle">Senarai produk kami</h2>
     <p class="count" id="count"></p>
+    <p class="fx" id="fx" hidden></p>
     <div class="tools">
-      <div class="chips" id="chips" role="group" aria-label="Tapis kategori"></div>
+      <div class="chips" id="chips" role="group" aria-label="Kategori"></div>
       <label class="search"><input id="q" type="search" placeholder="Cari aplikasi" aria-label="Cari aplikasi"></label>
     </div>
     <div class="grid" id="grid"></div>
   </div>
 </section>
 
-<section class="band alt" id="cara">
+<section class="band alt" id="kenapa">
   <div class="wrap">
-    <h2>Cara membeli</h2>
-    <div class="steps">
-      <div class="step"><b>1</b><h3>Pilih aplikasi</h3><p>Cari aplikasi dalam senarai dan tekan butang tempah. Mesej WhatsApp akan terbuka dengan nama aplikasi sudah ditulis.</p></div>
-      <div class="step"><b>2</b><h3>Sahkan pakej dan bayar</h3><p>Kami akan beritahu harga, tempoh dan jenis akaun. Bayar melalui pindahan bank atau e-dompet selepas anda setuju.</p></div>
-      <div class="step"><b>3</b><h3>Terima akses</h3><p>Butiran akses dihantar melalui WhatsApp. Kami bantu sehingga anda berjaya log masuk dan guna.</p></div>
+    <h2 data-t="wTitle">Kenapa pilih KedaiPremium?</h2>
+    <div class="why">
+      <div class="wi"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div><h3 data-t="w1h">Full warranty</h3><p data-t="w1p">Kebanyakan produk dilindungi warranty sepanjang tempoh langganan.</p></div>
+      <div class="wi"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3 data-t="w2h">Akaun private</h3><p data-t="w2p">Pilihan akaun private untuk kebanyakan produk, bukan dikongsi ramai.</p></div>
+      <div class="wi"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3.6-7.2L21 4v5h-5"/></svg></div><h3 data-t="w3h">Proses pantas</h3><p data-t="w3p">Tempah di WhatsApp, bayar, dan akses dihantar terus kepada anda.</p></div>
+      <div class="wi"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0b0b0c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10h8M8 13h5"/></svg></div><h3 data-t="w4h">Bantuan mesra</h3><p data-t="w4p">Kami bantu sehingga anda berjaya log masuk, dalam BM atau English.</p></div>
     </div>
   </div>
 </section>
 
-<section class="band" id="soalan">
+<section class="band" id="cara">
+  <div class="wrap">
+    <h2 data-t="hTitle">Cara membeli</h2>
+    <div class="steps">
+      <div class="step"><b>1</b><h3 data-t="s1h">Pilih aplikasi</h3><p data-t="s1p">Cari aplikasi dalam senarai dan tekan butang tempah. Mesej WhatsApp akan terbuka dengan nama aplikasi sudah ditulis.</p></div>
+      <div class="step"><b>2</b><h3 data-t="s2h">Sahkan pakej dan bayar</h3><p data-t="s2p">Kami akan beritahu harga, tempoh dan jenis akaun. Bayar melalui pindahan bank atau e-dompet selepas anda setuju.</p></div>
+      <div class="step"><b>3</b><h3 data-t="s3h">Terima akses</h3><p data-t="s3p">Butiran akses dihantar melalui WhatsApp. Kami bantu sehingga anda berjaya log masuk dan guna.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="soalan">
   <div class="wrap faq">
     <div>
-      <h2>Soalan lazim</h2>
-      <p class="lead" style="color:var(--mute)">Tak jumpa jawapan? Tanya terus di WhatsApp.</p>
+      <h2 data-t="fTitle">Soalan lazim</h2>
+      <p class="lead" style="color:var(--mute)" data-t="fLead">Tak jumpa jawapan? Tanya terus di WhatsApp.</p>
     </div>
     <div>
-      <details open><summary>Berapa lama akses dihantar?</summary><p>Biasanya dalam masa yang singkat selepas bayaran disahkan, pada waktu operasi.</p></details>
-      <details><summary>Akaun jenis apa yang saya dapat?</summary><p>Setiap produk ada jenis akaun dan tempoh yang berbeza. Kami akan terangkan dengan jelas sebelum anda membayar.</p></details>
-      <details><summary>Bagaimana cara bayar?</summary><p>Pindahan bank atau e-dompet. Butiran akaun bayaran diberi melalui WhatsApp.</p></details>
-      <details><summary>Kalau ada masalah log masuk?</summary><p>Hubungi kami di WhatsApp dan kami akan bantu sepanjang tempoh langganan anda.</p></details>
-      <details><summary>Boleh sambung langganan?</summary><p>Boleh. Hubungi kami sebelum tempoh tamat supaya akses tidak terputus.</p></details>
+      <details open><summary data-t="q1">Berapa lama akses dihantar?</summary><p data-t="a1">Biasanya dalam masa yang singkat selepas bayaran disahkan, pada waktu operasi.</p></details>
+      <details><summary data-t="q2">Akaun jenis apa yang saya dapat?</summary><p data-t="a2">Setiap produk ada jenis akaun dan tempoh yang berbeza. Kami akan terangkan dengan jelas sebelum anda membayar.</p></details>
+      <details><summary data-t="q3">Bagaimana cara bayar?</summary><p data-t="a3">Pindahan bank atau e-dompet. Butiran akaun bayaran diberi melalui WhatsApp.</p></details>
+      <details><summary data-t="q4">Kalau ada masalah log masuk?</summary><p data-t="a4">Hubungi kami di WhatsApp dan kami akan bantu sepanjang tempoh langganan anda.</p></details>
+      <details><summary data-t="q5">Boleh sambung langganan?</summary><p data-t="a5">Boleh. Hubungi kami sebelum tempoh tamat supaya akses tidak terputus.</p></details>
     </div>
   </div>
 </section>
@@ -197,87 +268,194 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
 <section class="band close" id="hubungi">
   <div class="wrap closein">
     <div>
-      <h2>Sedia untuk langgan?</h2>
-      <p>WhatsApp <span id="phoneTxt"></span> untuk harga terkini dan tempahan.</p>
+      <h2 data-t="cTitle">Sedia untuk langgan?</h2>
+      <p><span data-t="c1">WhatsApp</span> <span id="phoneTxt"></span> <span data-t="c2">untuk harga terkini dan tempahan.</span></p>
     </div>
-    <a class="btn wa" id="closeWa" href="#">Tempah melalui WhatsApp</a>
+    <a class="btn wa" id="closeWa" href="#" data-t="cBtn">Tempah melalui WhatsApp</a>
   </div>
 </section>
 
 <footer class="band">
   <div class="wrap">
     <div class="foot">
-      <div><h3>KedaiPremium</h3><p>Kedai langganan aplikasi premium. Tempahan dan bantuan melalui WhatsApp.</p></div>
-      <div><h3>Kategori</h3><ul id="footCats"></ul></div>
-      <div><h3>Hubungi</h3><ul><li>WhatsApp: <span id="phoneFoot"></span></li><li>Instagram dan TikTok: @kedaipremium</li><li>Waktu operasi: 10 pagi hingga 11 malam</li></ul></div>
+      <div><h3 class="logo" style="font-size:18px"><svg class="crown" viewBox="0 0 96 70" aria-hidden="true"><path d="M10 56 L6 16 L30 36 L48 8 L66 36 L90 16 L86 56 Z" fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><circle cx="48" cy="36" r="7" fill="var(--mint)"/><rect x="10" y="58" width="76" height="9" rx="4.5" fill="#128c4a"/></svg><span><span style="font-weight:500">Kedai</span>Premium</span></h3><p data-t="about">Kedai langganan aplikasi premium. Tempahan dan bantuan melalui WhatsApp.</p></div>
+      <div><h3 data-t="ftCat">Kategori</h3><ul id="footCats"></ul></div>
+      <div><h3 data-t="nContact">Hubungi</h3><ul><li>WhatsApp: <span id="phoneFoot"></span></li><li data-t="hours">Waktu operasi: 10 pagi hingga 11 malam</li></ul></div>
     </div>
     <div class="legal">
-      <p>KedaiPremium bukan wakil rasmi dan tidak bergabung dengan syarikat pemilik aplikasi yang disenaraikan. Semua nama produk dan tanda dagangan adalah milik pemilik masing-masing.</p>
-      <p style="margin-top:6px">Draf: akaun media sosial dan waktu operasi ialah contoh.</p>
+      <p data-t="legal">KedaiPremium bukan wakil rasmi dan tidak bergabung dengan syarikat pemilik aplikasi yang disenaraikan. Semua nama produk dan tanda dagangan adalah milik pemilik masing-masing.</p>
     </div>
   </div>
 </footer>
 
-<a class="fab" id="fab" href="#" aria-label="WhatsApp kami"><svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5s.3-1.3.2-1.5-.2-.2-.5-.4z"/></svg></a>
+<button class="totop" id="totop" aria-label="Ke atas / Back to top">↑</button>
+<a class="fab" id="fab" href="#" aria-label="WhatsApp"><svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5s.3-1.3.2-1.5-.2-.2-.5-.4z"/></svg></a>
 <script>
 {
 const PHONE='60107627782';
 const PHONE_TXT='010-762 7782';
+const T={
+ms:{nProd:'Produk',nHow:'Cara beli',nFaq:'Soalan lazim',nContact:'Hubungi',waUs:'WhatsApp kami',
+h1:'Langganan premium AI, edit video dan streaming di satu tempat',
+lead:'Pilih aplikasi yang anda perlukan, hubungi kami di WhatsApp, dan akses dihantar terus kepada anda. Mudah, cepat dan dibantu sehingga berjaya log masuk.',
+fApps:'aplikasi premium',soon:'Akan datang',locked:'Belum boleh ditempah',soonTxt:'Akan datang. Harga dan pakej akan dikemas kini tidak lama lagi.',tr1:'Full warranty',tr2:'Akaun private',tr3:'Bantuan WhatsApp',fFrom:'harga bermula',from:'Dari ',wTitle:'Kenapa pilih KedaiPremium?',w1h:'Full warranty',w1p:'Kebanyakan produk dilindungi warranty sepanjang tempoh langganan.',w2h:'Akaun private',w2p:'Pilihan akaun private untuk kebanyakan produk, bukan dikongsi ramai.',w3h:'Proses pantas',w3p:'Tempah di WhatsApp, bayar, dan akses dihantar terus kepada anda.',w4h:'Bantuan mesra',w4p:'Kami bantu sehingga anda berjaya log masuk, dalam BM atau English.',fCats:'kategori',fWa:'tempahan dan bantuan',ctaAll:'Lihat semua produk',ctaAsk:'Tanya harga',
+pTitle:'Senarai produk kami',search:'Cari aplikasi',all:'Semua',count:(a,b)=>a+' daripada '+b+' aplikasi dipaparkan',
+empty:'Tiada aplikasi ditemui. Cuba carian lain atau tanya kami di WhatsApp.',ask:'Harga: tanya di WhatsApp',order:'Tempah di WhatsApp',
+hTitle:'Cara membeli',s1h:'Pilih aplikasi',s1p:'Cari aplikasi dalam senarai dan tekan butang tempah. Mesej WhatsApp akan terbuka dengan nama aplikasi sudah ditulis.',
+s2h:'Sahkan pakej dan bayar',s2p:'Kami akan beritahu harga, tempoh dan jenis akaun. Bayar melalui pindahan bank atau e-dompet selepas anda setuju.',
+s3h:'Terima akses',s3p:'Butiran akses dihantar melalui WhatsApp. Kami bantu sehingga anda berjaya log masuk dan guna.',
+fTitle:'Soalan lazim',fLead:'Tak jumpa jawapan? Tanya terus di WhatsApp.',
+q1:'Berapa lama akses dihantar?',a1:'Biasanya dalam masa yang singkat selepas bayaran disahkan, pada waktu operasi.',
+q2:'Akaun jenis apa yang saya dapat?',a2:'Setiap produk ada jenis akaun dan tempoh yang berbeza. Kami akan terangkan dengan jelas sebelum anda membayar.',
+q3:'Bagaimana cara bayar?',a3:'Pindahan bank atau e-dompet. Butiran akaun bayaran diberi melalui WhatsApp.',
+q4:'Kalau ada masalah log masuk?',a4:'Hubungi kami di WhatsApp dan kami akan bantu sepanjang tempoh langganan anda.',
+q5:'Boleh sambung langganan?',a5:'Boleh. Hubungi kami sebelum tempoh tamat supaya akses tidak terputus.',
+cTitle:'Sedia untuk langgan?',c1:'WhatsApp',c2:'untuk harga terkini dan tempahan.',cBtn:'Tempah melalui WhatsApp',
+about:'Kedai langganan aplikasi premium. Tempahan dan bantuan melalui WhatsApp.',ftCat:'Kategori',hours:'Waktu operasi: 10 pagi hingga 11 malam',
+legal:'KedaiPremium bukan wakil rasmi dan tidak bergabung dengan syarikat pemilik aplikasi yang disenaraikan. Semua nama produk dan tanda dagangan adalah milik pemilik masing-masing.',
+fx:'Harga USD ialah anggaran (1 USD ≈ RM4.10). Bayaran sebenar dibuat dalam RM.',msgGen:'Salam, saya nak tanya harga langganan premium.',msgP:n=>'Salam, saya nak tanya harga dan pakej '+n+'.'},
+en:{nProd:'Products',nHow:'How to buy',nFaq:'FAQ',nContact:'Contact',waUs:'WhatsApp us',
+h1:'Premium AI, video editing and streaming subscriptions in one place',
+lead:'Choose the app you need, message us on WhatsApp, and your access is sent straight to you. Easy, fast, and we help until you are logged in.',
+fApps:'premium apps',soon:'Coming soon',locked:'Not available yet',soonTxt:'Coming soon. Prices and packages will be updated shortly.',tr1:'Full warranty',tr2:'Private accounts',tr3:'WhatsApp support',fFrom:'starting price',from:'From ',wTitle:'Why choose KedaiPremium?',w1h:'Full warranty',w1p:'Most products are covered by warranty for the whole subscription.',w2h:'Private accounts',w2p:'Private account options for most products, not shared with strangers.',w3h:'Fast process',w3p:'Order on WhatsApp, pay, and your access is sent straight to you.',w4h:'Friendly support',w4p:'We help until you are logged in, in Malay or English.',fCats:'categories',fWa:'orders and support',ctaAll:'See all products',ctaAsk:'Ask for prices',
+pTitle:'Our products',search:'Search apps',all:'All',count:(a,b)=>'Showing '+a+' of '+b+' apps',
+empty:'No apps found. Try another search or ask us on WhatsApp.',ask:'Price: ask on WhatsApp',order:'Order on WhatsApp',
+hTitle:'How to buy',s1h:'Choose an app',s1p:'Find the app in the list and tap the order button. WhatsApp opens with the app name already written.',
+s2h:'Confirm and pay',s2p:'We tell you the price, duration and account type. Pay by bank transfer or e-wallet once you agree.',
+s3h:'Get access',s3p:'Access details are sent on WhatsApp. We help until you are logged in and using it.',
+fTitle:'Frequently asked questions',fLead:'Can’t find an answer? Ask us on WhatsApp.',
+q1:'How fast is access delivered?',a1:'Usually shortly after payment is confirmed, during operating hours.',
+q2:'What type of account do I get?',a2:'Each product has its own account type and duration. We explain clearly before you pay.',
+q3:'How do I pay?',a3:'Bank transfer or e-wallet. Payment details are given on WhatsApp.',
+q4:'What if I have trouble logging in?',a4:'Message us on WhatsApp and we will help throughout your subscription.',
+q5:'Can I renew?',a5:'Yes. Contact us before your subscription ends so your access is not interrupted.',
+cTitle:'Ready to subscribe?',c1:'WhatsApp',c2:'for the latest prices and orders.',cBtn:'Order on WhatsApp',
+about:'Premium app subscription store. Orders and support on WhatsApp.',ftCat:'Categories',hours:'Hours: 10am to 11pm',
+legal:'KedaiPremium is not an official representative of, and is not affiliated with, the companies that own the listed apps. All product names and trademarks belong to their respective owners.',
+fx:'USD prices are estimates (1 USD ≈ RM4.10). Payment is made in RM.',msgGen:'Hi, I would like to ask about premium subscription prices.',msgP:n=>'Hi, I would like to ask about the price and packages for '+n+'.'}
+};
 const CATS=[
-  {id:'ai',name:'AI',shade:'#b8f5d0'},
-  {id:'edit',name:'Edit video & gambar',shade:'#ffffff'},
-  {id:'stream',name:'Streaming & muzik',shade:'#0b0b0c'}
+  {id:'ai',name:['AI','AI'],shade:'#b8f5d0'},
+  {id:'edit',name:['Edit video & gambar','Video & photo editing'],shade:'#ffffff'},
+  {id:'stream',name:['Streaming & muzik','Streaming & music'],shade:'#0b0b0c'}
 ];
+const WT=['Wajib tanya stok dahulu sebelum bayar.','Please ask for stock availability before paying.'];
 const P=[
-  ['Gemini','ai','Pembantu AI Google untuk menulis, mencari idea dan merancang.'],
-  ['ChatGPT','ai','Chatbot AI untuk menulis, menjawab soalan dan membantu kerja harian.'],
-  ['Claude','ai','Pembantu AI untuk menulis, menganalisis dokumen dan membina idea.'],
-  ['Muse','ai','Alat AI kreatif. Tanya kami untuk butiran pakej.'],
-  ['CapCut','edit','Edit video untuk TikTok, Reels dan YouTube dengan ciri pro.'],
-  ['Canva','edit','Reka poster, kandungan media sosial dan persembahan.'],
-  ['Alight Motion','edit','Animasi dan motion graphics terus di telefon.'],
-  ['Picsart','edit','Edit gambar, kolaj dan buang latar belakang.'],
-  ['Netflix','stream','Filem dan siri dari seluruh dunia.'],
-  ['Disney+','stream','Filem dan siri keluarga, animasi dan banyak lagi.'],
-  ['Prime Video','stream','Filem dan siri pilihan.'],
-  ['Viu','stream','Drama Korea, Asia dan rancangan tempatan.'],
-  ['iQIYI','stream','Drama Cina, Korea dan Asia.'],
-  ['Spotify','stream','Muzik dan podcast tanpa iklan.']
+  ['Gemini','ai',['Pembantu AI Google untuk menulis, mencari idea dan merancang.','Google’s AI assistant for writing, ideas and planning.'],
+    [[['3 bulan','3 months'],'RM25'],[['12 bulan','12 months'],'RM30'],[['18 bulan','18 months'],'RM35']],
+    [['Akaun private','Private account'],['Full warranty','Full warranty'],['Wajib guna akaun Gmail pembeli','Buyer’s own Gmail required']],
+    [['Plan 18 bulan tidak perlu beri kata laluan.','The 18-month plan does not need your password.']]],
+  ['ChatGPT','ai',['Chatbot AI untuk menulis, menjawab soalan dan membantu kerja harian.','AI chatbot for writing, answering questions and everyday work.'],
+    [[['ChatGPT Go, 3 bulan','ChatGPT Go, 3 months'],'RM40'],[['ChatGPT Plus, 1 bulan','ChatGPT Plus, 1 month'],'RM45'],[['ChatGPT Plus, 3 bulan','ChatGPT Plus, 3 months'],'RM115']],
+    [['Akaun private','Private account'],['Full warranty','Full warranty']],
+    [['ChatGPT Plus boleh guna emel sendiri. ChatGPT Go tidak boleh guna emel sendiri.','ChatGPT Plus can use your own email. ChatGPT Go cannot use your own email.'],WT]],
+  ['Claude','ai',['Pembantu AI untuk menulis, menganalisis dokumen dan membina idea.','AI assistant for writing, analysing documents and building ideas.'],
+    [[['Claude AI Pro, 1 bulan','Claude AI Pro, 1 month'],'RM90']],
+    [['Akaun private','Private account'],['Wajib guna akaun @gmail.com pembeli','Buyer’s own @gmail.com required'],['Full warranty','Full warranty']],
+    [['Dilarang berkongsi akaun, guna VPN, atau guna third-party seperti spam, 9Router, proxy atau sejenisnya. Melanggar syarat: tiada warranty.','No account sharing, no VPN, and no third-party tools such as spam, 9Router, proxies or similar. Breaking these rules voids the warranty.'],WT]],
+  ['Muse','ai',['Alat AI kreatif untuk menjana gambar dan video.','Creative AI tool for generating images and video.'],
+    [[['Akaun Muse AI 1B Token','Muse AI account, 1B tokens'],'RM15'],[['Akaun Muse AI Video 1B Token','Muse AI Video account, 1B tokens'],'RM30']],
+    [['Akaun private','Private account'],['Akaun & token kekal','Account & tokens never expire'],['Boleh tukar emel & kata laluan','Email & password can be changed']],
+    [WT]],
+  ['CapCut','edit',['Edit video untuk TikTok, Reels dan YouTube dengan ciri pro.','Edit videos for TikTok, Reels and YouTube with pro features.'],
+    [[['CapCut Pro, 1 bulan','CapCut Pro, 1 month'],'RM20'],[['CapCut Pro, 6 bulan','CapCut Pro, 6 months'],'RM35']],
+    [['Akaun private','Private account'],['Full warranty','Full warranty'],['Emel disediakan oleh penjual','Email provided by seller']],
+    [['Hanya boleh log masuk di 1 peranti. Jika lebih, warranty terbatal.','Log in on 1 device only, or the warranty is void.'],WT]],
+  ['Canva','edit',['Reka poster, kandungan media sosial dan persembahan.','Design posters, social media content and presentations.'],
+    [[['Member Pro, 1 tahun + Designer','Pro Member, 1 year + Designer'],'RM20'],[['Lifetime Edu, Student','Lifetime Edu, Student'],'RM25'],[['Lifetime Edu, Teacher','Lifetime Edu, Teacher'],'RM30']],
+    [['Akaun private','Private account'],['Melalui jemputan ke emel pembeli','Via invite to buyer’s email'],['Full warranty','Full warranty']],
+    [WT]],
+  ['Alight Motion','edit',['Animasi dan motion graphics terus di telefon.','Animation and motion graphics right on your phone.'],
+    [[['Pro, 1 tahun','Pro, 1 year'],'RM18']],
+    [['Akaun private','Private account'],['Full warranty','Full warranty']],
+    [WT]],
+  ['Netflix','stream',['Filem dan siri dari seluruh dunia.','Movies and series from around the world.'],
+    [[['Semi private, 1 bulan','Semi private, 1 month'],'RM20'],[['Semi private, 2 bulan','Semi private, 2 months'],'RM40'],[['Request profil/PIN','Custom profile/PIN request'],'+RM1']],
+    [['Ultra HD 4K','Ultra HD 4K'],['Semua peranti','All devices'],['1 profil, 2 peranti','1 profile, 2 devices'],['Boleh renew sebelum 28 hari','Renew before 28 days'],['Emel penjual (log masuk guna kod)','Seller email (login by code)'],['Full warranty','Full warranty']],
+    [['Semasa tempah, beritahu nama dan jenama peranti (TV, projektor, telefon, tablet, laptop, iPhone, iPad atau MacBook). Contoh: iPhone 15 Pro Max.','When ordering, tell us your device name and brand (TV, projector, phone, tablet, laptop, iPhone, iPad or MacBook). Example: iPhone 15 Pro Max.'],['Wajib hantar screenshot bukti log masuk kepada pemilik dalam masa 24 jam selepas pembelian. Jika tidak, tiada warranty.','You must send a screenshot proving login to the owner within 24 hours of purchase, or there is no warranty.'],WT]],
+  ['Disney+','stream',['Filem dan siri keluarga, animasi dan banyak lagi.','Family movies, series, animation and more.'],'soon'],
+  ['Prime Video','stream',['Filem dan siri pilihan.','Selected movies and series.'],'soon'],
+  ['Spotify','stream',['Muzik dan podcast tanpa iklan.','Ad-free music and podcasts.'],
+    [[['Individual, 1 bulan','Individual, 1 month'],'RM20'],[['Individual, 2 bulan','Individual, 2 months'],'RM25'],[['Individual, 3 bulan','Individual, 3 months'],'RM30']],
+    [['Akaun private','Private account'],['Region akaun rawak (bukan semestinya Malaysia)','Random account region (not necessarily Malaysia)'],['Emel disediakan oleh penjual','Email provided by seller'],['Full warranty','Full warranty']],
+    [WT],
+    [['Apa maksud region rawak? Akaun Spotify ini mungkin didaftar di negara lain, bukan Malaysia. Anda tetap boleh dengar lagu dan podcast seperti biasa. Cuma ada sesetengah lagu dan cadangan playlist yang mungkin berbeza sedikit.','What does random region mean? This Spotify account may be registered in another country, not Malaysia. You can still listen to music and podcasts as usual. Only a few songs and playlist suggestions may be slightly different.']]]
 ];
-const wa=t=>'https://wa.me/'+PHONE+'?text='+encodeURIComponent(t);
+let lang='ms',cur$='myr';const RATE=4.10;
+try{const v=localStorage.getItem('kp-cur');if(v==='usd'||v==='myr')cur$=v;}catch(e){}
+const money=v=>{if(cur$==='myr')return v;const m=String(v).match(/^([+]?)RM *([0-9.]+)$/i);return m?m[1]+'US$'+(parseFloat(m[2])/RATE).toFixed(2):v;};
+try{const v=localStorage.getItem('kp-lang');if(v==='en'||v==='ms')lang=v;}catch(e){}
+const L=x=>Array.isArray(x)?x[lang==='en'?1:0]:x;
+const t=k=>T[lang][k];
+const HUES=[['#6d3df5','#21b8f0'],['#0c8f63','#47d6a0'],['#e8452c','#f7a33b'],['#2448d8','#7a5cff'],['#d6246e','#ff8a6b'],['#0b7a8f','#3fd3c6'],['#7a2bd1','#e255b8'],['#1d1f24','#4a5568']];
+const ICON={ai:'<svg aria-hidden="true" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8zM19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9z"/></svg>',edit:'<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="#fff"/></svg>',stream:'<svg aria-hidden="true" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="10" opacity=".3"/><path d="M10 8l6 4-6 4z"/></svg>'};
+const wa=m=>'https://wa.me/'+PHONE+'?text='+encodeURIComponent(m);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const catName=id=>CATS.find(c=>c.id===id).name;
+const catName=id=>L(CATS.find(c=>c.id===id).name);
 let cur='all';
 const chips=document.getElementById('chips');
 const grid=document.getElementById('grid');
 const q=document.getElementById('q');
 const count=document.getElementById('count');
 const renderChips=()=>{
-  chips.innerHTML=[{id:'all',name:'Semua'},...CATS].map(c=>{
+  chips.innerHTML=[{id:'all',name:t('all')},...CATS].map(c=>{
     const n=c.id==='all'?P.length:P.filter(p=>p[1]===c.id).length;
-    return '<button class="chip" data-c="'+c.id+'" aria-pressed="'+(cur===c.id)+'">'+esc(c.name)+' ('+n+')</button>';
+    return '<button class="chip" data-c="'+c.id+'" aria-pressed="'+(cur===c.id)+'">'+esc(L(c.name))+' ('+n+')</button>';
   }).join('');
+};
+const num=v=>{const m=String(v).match(/^RM *([0-9.]+)$/i);return m?parseFloat(m[1]):null;};
+const minOf=p=>Array.isArray(p[3])?Math.min(...p[3].map(k=>num(k[1])).filter(x=>x!==null)):null;
+const card=(p,i)=>{
+  const mn=minOf(p);
+  const h=HUES[P.indexOf(p)%HUES.length];
+  let o='<article class="prod'+(p[3]==='soon'?' lock':'')+'" style="animation-delay:'+(i*0.04).toFixed(2)+'s"><div class="cover" style="--h1:'+h[0]+';--h2:'+h[1]+'">'+ICON[p[1]]+(mn?'<span class="from">'+esc(t('from')+money('RM'+mn))+'</span>':p[3]==='soon'?'<span class="from soonb">'+esc(t('soon'))+'</span>':'')+'<h3 class="big">'+esc(p[0])+'</h3></div><span class="cat">'+esc(catName(p[1]))+'</span><p>'+esc(L(p[2]))+'</p>';
+  if(p[4])o+='<div class="tags">'+p[4].map(x=>'<span>'+esc(L(x))+'</span>').join('')+'</div>';
+  o+=p[3]==='soon'?'<div class="soonbox">'+esc(t('soonTxt'))+'</div>':p[3]?'<ul class="pk">'+p[3].map(k=>'<li><span>'+esc(L(k[0]))+'</span><b>'+esc(money(k[1]))+'</b></li>').join('')+'</ul>':'<div class="ask">'+esc(t('ask'))+'</div>';
+  if(p[6])o+=p[6].map(n=>{const x=L(n),k=x.indexOf('? ');return '<div class="info">'+(k>0?'<b>'+esc(x.slice(0,k+1))+'</b>'+esc(x.slice(k+2)):esc(x))+'</div>';}).join('');
+  if(p[5])o+=p[5].map(n=>'<div class="note">'+esc(L(n))+'</div>').join('');
+  o+=p[3]==='soon'?'<span class="locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>'+esc(t('locked'))+'</span></article>':'<a href="'+wa(t('msgP')(p[0]))+'" target="_blank" rel="noopener">'+esc(t('order'))+'</a></article>';
+  return o;
 };
 const render=()=>{
   const s=q.value.trim().toLowerCase();
-  const list=P.filter(p=>(cur==='all'||p[1]===cur)&&(!s||p[0].toLowerCase().includes(s)||p[2].toLowerCase().includes(s)));
-  count.textContent=list.length+' daripada '+P.length+' aplikasi dipaparkan';
-  grid.innerHTML=list.length?list.map((p,i)=>'<article class="prod" style="animation-delay:'+(i*0.04).toFixed(2)+'s"><div class="top"><span class="mono" aria-hidden="true">'+esc(p[0][0])+'</span><div><h3>'+esc(p[0])+'</h3><span class="cat">'+esc(catName(p[1]))+'</span></div></div><p>'+esc(p[2])+'</p><a href="'+wa('Salam, saya nak tanya harga dan pakej '+p[0]+'.')+'" target="_blank" rel="noopener">Tempah di WhatsApp</a></article>').join('')
-    :'<div class="empty">Tiada aplikasi ditemui. Cuba carian lain atau tanya kami di WhatsApp.</div>';
+  const list=P.filter(p=>(cur==='all'||p[1]===cur)&&(!s||p[0].toLowerCase().includes(s)||p[2].join(' ').toLowerCase().includes(s)));
+  count.textContent=t('count')(list.length,P.length);
+  if(!list.length){grid.className='';grid.innerHTML='<div class="empty">'+esc(t('empty'))+'</div>';return;}
+  if(cur==='all'&&!s){grid.className='';let k=0;grid.innerHTML=CATS.map(c=>{const it=list.filter(p=>p[1]===c.id);return '<div class="group"><div class="ghead"><h3>'+esc(L(c.name))+'</h3><span>'+it.length+'</span></div><div class="grid">'+it.map(p=>card(p,k++)).join('')+'</div></div>';}).join('');}
+  else{grid.className='grid';grid.innerHTML=list.map(card).join('');}
 };
+const applyLang=()=>{
+  document.documentElement.lang=lang==='en'?'en':'ms';
+  for(const el of document.querySelectorAll('[data-t]'))el.textContent=t(el.dataset.t);
+  q.placeholder=t('search');q.setAttribute('aria-label',t('search'));
+  document.getElementById('lMs').setAttribute('aria-pressed',lang==='ms');
+  document.getElementById('lEn').setAttribute('aria-pressed',lang==='en');
+  document.getElementById('cMyr').setAttribute('aria-pressed',cur$==='myr');
+  document.getElementById('cUsd').setAttribute('aria-pressed',cur$==='usd');
+  const allMin=Math.min(...P.map(minOf).filter(x=>x!==null));document.getElementById('minP').textContent=money('RM'+allMin);
+  const fx=document.getElementById('fx');fx.hidden=cur$!=='usd';fx.textContent=t('fx');
+  for(const id of ['navWa','heroWa','closeWa','fab']){const a=document.getElementById(id);a.href=wa(t('msgGen'));a.target='_blank';a.rel='noopener';}
+  document.getElementById('footCats').innerHTML=CATS.map(c=>'<li>'+esc(L(c.name))+'</li>').join('');
+  renderChips();render();draw();
+};
+const setLang=v=>{lang=v;try{localStorage.setItem('kp-lang',v);}catch(e){}applyLang();};
+document.getElementById('lMs').addEventListener('click',()=>setLang('ms'));
+document.getElementById('lEn').addEventListener('click',()=>setLang('en'));
+const setCur=v=>{cur$=v;try{localStorage.setItem('kp-cur',v);}catch(e){}applyLang();};
+document.getElementById('cMyr').addEventListener('click',()=>setCur('myr'));
+document.getElementById('cUsd').addEventListener('click',()=>setCur('usd'));
 chips.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;cur=b.dataset.c;renderChips();render();});
 q.addEventListener('input',render);
-for(const id of ['navWa','heroWa','closeWa','fab']){const a=document.getElementById(id);a.href=wa('Salam, saya nak tanya harga langganan premium.');a.target='_blank';a.rel='noopener';}
 document.getElementById('phoneTxt').textContent=PHONE_TXT;
 document.getElementById('phoneFoot').textContent=PHONE_TXT;
 document.getElementById('nProd').textContent=P.length;
-document.getElementById('footCats').innerHTML=CATS.map(c=>'<li>'+esc(c.name)+'</li>').join('');
-renderChips();render();
+document.getElementById('nCat').textContent=CATS.length;
+const tt=document.getElementById('totop');addEventListener('scroll',()=>tt.classList.toggle('on',scrollY>600),{passive:true});tt.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 const mq=P.map(p=>'<span>'+esc(p[0])+'</span>').join('');document.getElementById('marq').innerHTML=mq+mq;
 
 const s=document.getElementById('fan');
 let spread=false;
-const draw=()=>{
+function draw(){
   const W=s.clientWidth,H=s.clientHeight;if(!W||!H)return;
   const cw=Math.min(W*0.46,230),ch=cw*1.42;
   const cx=W/2,base=H*0.5+ch*0.42;
@@ -285,10 +463,8 @@ const draw=()=>{
   let out='<defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>';
   out+='<ellipse cx="'+cx+'" cy="'+(base+10)+'" rx="'+(cw*1.25)+'" ry="'+(cw*0.12)+'" fill="#0b0b0c" opacity=".12"/>';
   CATS.forEach((c,i)=>{
-    const dark=c.shade==='#0b0b0c';
-    const ink=dark?'#b8f5d0':'#0b0b0c';
-    const n=P.filter(p=>p[1]===c.id).length;
-    const names=P.filter(p=>p[1]===c.id).slice(0,3).map(p=>p[0]);
+    const ink=c.shade==='#0b0b0c'?'#b8f5d0':'#0b0b0c';
+    const items=P.filter(p=>p[1]===c.id);
     const x=cx-cw/2,y=base-ch;
     out+='<g class="card" style="transform-origin:'+cx+'px '+(base+ch*0.2)+'px;transform:rotate('+(spread?angs[i]:0)+'deg)" data-a="'+angs[i]+'"><g class="bob" style="animation-delay:'+(i*0.6)+'s">';
     out+='<rect x="'+(x+6)+'" y="'+(y+8)+'" width="'+cw+'" height="'+ch+'" rx="18" fill="#0b0b0c" opacity=".18"/>';
@@ -296,16 +472,17 @@ const draw=()=>{
     out+='<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="'+(ch*0.5)+'" rx="18" fill="url(#gl)"/>';
     out+='<rect x="'+(x+16)+'" y="'+(y+18)+'" width="'+(cw*0.22)+'" height="'+(cw*0.16)+'" rx="5" fill="none" stroke="'+ink+'" stroke-width="2"/>';
     out+='<line x1="'+(x+16+cw*0.11)+'" y1="'+(y+18)+'" x2="'+(x+16+cw*0.11)+'" y2="'+(y+18+cw*0.16)+'" stroke="'+ink+'" stroke-width="1.5"/>';
-    out+='<text x="'+(x+16)+'" y="'+(y+ch*0.52)+'" fill="'+ink+'" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="'+Math.round(cw*0.24)+'">'+n+'</text>';
-    out+='<text x="'+(x+16)+'" y="'+(y+ch*0.52+22)+'" fill="'+ink+'" font-family="Inter,sans-serif" font-size="14" font-weight="600">'+esc(c.name.split(' ')[0])+'</text>';
-    if(cw>150)names.forEach((nm,j)=>{out+='<text x="'+(x+16)+'" y="'+(y+ch*0.72+j*18)+'" fill="'+ink+'" opacity=".75" font-family="Inter,sans-serif" font-size="13">'+esc(nm)+'</text>';});
+    out+='<text x="'+(x+16)+'" y="'+(y+ch*0.52)+'" fill="'+ink+'" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="'+Math.round(cw*0.24)+'">'+items.length+'</text>';
+    out+='<text x="'+(x+16)+'" y="'+(y+ch*0.52+22)+'" fill="'+ink+'" font-family="Inter,sans-serif" font-size="14" font-weight="600">'+esc(L(c.name).split(' ')[0])+'</text>';
+    if(cw>150)items.slice(0,3).forEach((p,j)=>{out+='<text x="'+(x+16)+'" y="'+(y+ch*0.72+j*18)+'" fill="'+ink+'" opacity=".75" font-family="Inter,sans-serif" font-size="13">'+esc(p[0])+'</text>';});
     out+='<text x="'+(x+cw-16)+'" y="'+(y+ch-16)+'" text-anchor="end" fill="'+ink+'" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="14">PREMIUM</text>';
     out+='</g></g>';
   });
   s.setAttribute('viewBox','0 0 '+W+' '+H);
   s.innerHTML=out;
   if(!spread){spread=true;requestAnimationFrame(()=>requestAnimationFrame(()=>{for(const g of s.querySelectorAll('.card'))g.style.transform='rotate('+g.dataset.a+'deg)';}));}
-};
+}
+applyLang();
 const ro=new ResizeObserver(draw);ro.observe(document.getElementById('fig'));
 }
 </script>
