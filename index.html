@@ -140,8 +140,8 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
       <h1>Langganan premium AI, edit video dan streaming di satu tempat</h1>
       <p class="lead">Pilih aplikasi yang anda perlukan, hubungi kami di WhatsApp, dan akses dihantar terus kepada anda. Mudah, cepat dan dibantu sehingga berjaya log masuk.</p>
       <div class="facts">
-        <div><b id="nProd">24</b><span>aplikasi premium</span></div>
-        <div><b>4</b><span>kategori</span></div>
+        <div><b id="nProd">14</b><span>aplikasi premium</span></div>
+        <div><b>3</b><span>kategori</span></div>
         <div><b>WhatsApp</b><span>tempahan dan bantuan</span></div>
       </div>
       <div class="cta">
@@ -149,7 +149,7 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
         <a class="btn sec" id="heroWa" href="#">Tanya harga</a>
       </div>
     </div>
-    <div class="fig" id="fig" aria-label="Kad langganan mengikut kategori: AI, edit, streaming, kerja dan belajar"><svg id="fan" class="fan" role="img"></svg></div>
+    <div class="fig" id="fig" aria-label="Kad langganan mengikut kategori: AI, edit dan streaming"><svg id="fan" class="fan" role="img"></svg></div>
   </div>
 </header>
 
@@ -226,34 +226,23 @@ const PHONE_TXT='010-762 7782';
 const CATS=[
   {id:'ai',name:'AI',shade:'#b8f5d0'},
   {id:'edit',name:'Edit video & gambar',shade:'#ffffff'},
-  {id:'stream',name:'Streaming & muzik',shade:'#0b0b0c'},
-  {id:'kerja',name:'Kerja & belajar',shade:'#e6fbee'}
+  {id:'stream',name:'Streaming & muzik',shade:'#0b0b0c'}
 ];
 const P=[
   ['Gemini','ai','Pembantu AI Google untuk menulis, mencari idea dan merancang.'],
   ['ChatGPT','ai','Chatbot AI untuk menulis, menjawab soalan dan membantu kerja harian.'],
   ['Claude','ai','Pembantu AI untuk menulis, menganalisis dokumen dan membina idea.'],
-  ['ElevenLabs','ai','Suara AI untuk voiceover, alih suara dan bacaan teks.'],
   ['Muse','ai','Alat AI kreatif. Tanya kami untuk butiran pakej.'],
   ['CapCut','edit','Edit video untuk TikTok, Reels dan YouTube dengan ciri pro.'],
   ['Canva','edit','Reka poster, kandungan media sosial dan persembahan.'],
   ['Alight Motion','edit','Animasi dan motion graphics terus di telefon.'],
-  ['Lightroom','edit','Edit dan warnakan gambar dengan preset profesional.'],
-  ['Meitu','edit','Edit swafoto dan gambar potret dengan mudah.'],
   ['Picsart','edit','Edit gambar, kolaj dan buang latar belakang.'],
-  ['Wink','edit','Tingkatkan kualiti dan kejelasan video.'],
-  ['Vision','edit','Tanya kami untuk butiran pakej.'],
   ['Netflix','stream','Filem dan siri dari seluruh dunia.'],
   ['Disney+','stream','Filem dan siri keluarga, animasi dan banyak lagi.'],
   ['Prime Video','stream','Filem dan siri pilihan.'],
   ['Viu','stream','Drama Korea, Asia dan rancangan tempatan.'],
-  ['WeTV','stream','Drama dan rancangan Asia.'],
   ['iQIYI','stream','Drama Cina, Korea dan Asia.'],
-  ['Youku','stream','Drama dan rancangan Cina.'],
-  ['Spotify','stream','Muzik dan podcast tanpa iklan.'],
-  ['Microsoft','kerja','Word, Excel, PowerPoint dan storan awan.'],
-  ['Zoom','kerja','Mesyuarat dalam talian tanpa had masa.'],
-  ['Duolingo','kerja','Belajar bahasa tanpa iklan dan tanpa had.']
+  ['Spotify','stream','Muzik dan podcast tanpa iklan.']
 ];
 const wa=t=>'https://wa.me/'+PHONE+'?text='+encodeURIComponent(t);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -292,7 +281,7 @@ const draw=()=>{
   const W=s.clientWidth,H=s.clientHeight;if(!W||!H)return;
   const cw=Math.min(W*0.46,230),ch=cw*1.42;
   const cx=W/2,base=H*0.5+ch*0.42;
-  const angs=[-24,-8,8,24];
+  const angs=CATS.map((c,i)=>(i-(CATS.length-1)/2)*16);
   let out='<defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>';
   out+='<ellipse cx="'+cx+'" cy="'+(base+10)+'" rx="'+(cw*1.25)+'" ry="'+(cw*0.12)+'" fill="#0b0b0c" opacity=".12"/>';
   CATS.forEach((c,i)=>{
