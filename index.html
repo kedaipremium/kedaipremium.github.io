@@ -177,6 +177,56 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
 .step:nth-child(2){animation-delay:.12s}.step:nth-child(3){animation-delay:.24s}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
+<style>
+/* TEMA V3: moden warna-warni, gelap dengan cahaya ungu, biru dan merah jambu */
+:root,:root[data-theme=light],:root[data-theme=dark]{color-scheme:dark;--bg:#2a2170;--ink:#ffffff;--mute:#d6d2f5;--mint:#7c5cff;--mint2:rgba(255,255,255,.03);--line:rgba(255,255,255,.18);--card:rgba(255,255,255,.1);--acc:#ffffff;--accInk:#07070f;--g1:#7c5cff;--g2:#22d3ee;--g3:#ec4899}
+html{background:#2a2170}
+body{background-color:#2a2170;background-image:linear-gradient(160deg,#3b2a9e 0%,#2a2170 30%,#1d4f86 60%,#4a2a8e 80%,#6b2a7e 100%)}
+body::before{content:"";position:fixed;inset:-20%;z-index:-2;pointer-events:none;background:radial-gradient(40% 35% at 15% 10%,rgba(167,139,250,.55),transparent 70%),radial-gradient(35% 30% at 90% 25%,rgba(34,211,238,.45),transparent 70%),radial-gradient(40% 35% at 70% 95%,rgba(244,114,182,.45),transparent 70%);animation:glow 18s ease-in-out infinite alternate}
+@keyframes glow{to{transform:translate(4%,-3%) rotate(6deg)}}
+nav{background:rgba(42,33,112,.55);backdrop-filter:blur(14px)}
+.hero{background:transparent}
+.hero::before{background:#a78bfa;opacity:.5}
+.hero::after{background:#22d3ee;opacity:.4}
+.hero h1{background:linear-gradient(100deg,#ffffff 20%,#b9a8ff 55%,#67e8f9 85%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:#ece9ff;opacity:1}
+.trust span{background:rgba(255,255,255,.06)!important;border-color:rgba(255,255,255,.14)}
+.trust span::before{background:linear-gradient(135deg,var(--g2),var(--g1));box-shadow:0 0 10px var(--g2)}
+.facts b{background:linear-gradient(90deg,#fff,#c4b5fd);-webkit-background-clip:text;background-clip:text;color:transparent}
+.facts span{color:var(--mute);opacity:1}
+.btn.pri{background:linear-gradient(100deg,var(--g1),var(--g2));border:0;color:#fff;box-shadow:0 10px 30px -10px rgba(124,92,255,.9)}
+.btn.sec{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.2);color:#fff}
+.btn.wa{box-shadow:0 10px 30px -12px rgba(18,140,74,.9)}
+.lang{border-color:rgba(255,255,255,.25)}
+.lang button[aria-pressed=true]{background:linear-gradient(100deg,var(--g1),var(--g2));color:#fff}
+.marq{background:linear-gradient(90deg,var(--g1),var(--g3),var(--g2));border:0;color:#fff}
+.marq span::after{background:#fff}
+.chip{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
+.chip[aria-pressed=true]{background:linear-gradient(100deg,var(--g1),var(--g2));border-color:transparent;color:#fff}
+.search input{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+.prod{background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.08));backdrop-filter:blur(10px);border-color:rgba(255,255,255,.1)}
+.prod:hover{border-color:rgba(167,139,250,.7);box-shadow:0 0 0 1px rgba(167,139,250,.35),0 24px 60px -24px rgba(124,92,255,.8)}
+.prod a{border-bottom-color:var(--g2)}
+.tags span{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(167,139,250,.3)}
+.pk{border-top-color:rgba(255,255,255,.12)}
+.pk b{color:#a5f3fc;text-shadow:0 0 12px rgba(34,211,238,.5)}
+.info{background:rgba(34,211,238,.08);border-color:rgba(34,211,238,.25)}
+.note{background:rgba(236,72,153,.1);color:#fbcfe8;border:1px solid rgba(236,72,153,.25)}
+.soonbox{border-color:rgba(255,255,255,.2)}
+.ghead::after{background:linear-gradient(90deg,rgba(167,139,250,.6),transparent)}
+.alt{background:rgba(255,255,255,.06)}
+.wi{background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.07));border-color:rgba(255,255,255,.1)}
+.wi:hover{border-color:rgba(167,139,250,.6);box-shadow:0 20px 50px -24px rgba(124,92,255,.8)}
+.wi .ic{background:linear-gradient(135deg,var(--g1),var(--g2))}
+.wi .ic svg{stroke:#fff}
+.step{border-top:3px solid transparent;border-image:linear-gradient(90deg,var(--g1),var(--g2)) 1}
+.step b{background:linear-gradient(90deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.close{background:linear-gradient(120deg,#7c5cff,#0891b2 60%,#db2777);color:#fff}
+footer{border-top-color:rgba(255,255,255,.08)}
+.totop{background:rgba(42,33,112,.85);border-color:rgba(255,255,255,.3)}
+.logo .crown{color:#fff}
+.fan .card:focus-visible .face{stroke:#fff}
+</style>
 </head>
 <body>
 <nav>
@@ -338,9 +388,9 @@ legal:'KedaiPremium is not an official representative of, and is not affiliated 
 fx:'USD prices are estimates (1 USD ≈ RM4.10). Payment is made in RM.',msgGen:'Hi, I would like to ask about premium subscription prices.',msgP:n=>'Hi, I would like to ask about the price and packages for '+n+'.'}
 };
 const CATS=[
-  {id:'ai',name:['AI','AI'],shade:'#b8f5d0'},
-  {id:'edit',name:['Edit video & gambar','Video & photo editing'],shade:'#ffffff'},
-  {id:'stream',name:['Streaming & muzik','Streaming & music'],shade:'#0b0b0c'}
+  {id:'ai',name:['AI','AI'],shade:'#7c5cff'},
+  {id:'edit',name:['Edit video & gambar','Video & photo editing'],shade:'#0891b2'},
+  {id:'stream',name:['Streaming & muzik','Streaming & music'],shade:'#db2777'}
 ];
 const WT=['Wajib tanya stok dahulu sebelum bayar.','Please ask for stock availability before paying.'];
 const P=[
@@ -467,14 +517,14 @@ function draw(){
   const cx=W/2,base=(H+ch)/2+24;
   const angs=CATS.map((c,i)=>(i-(CATS.length-1)/2)*16);
   let out='<defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>';
-  out+='<ellipse cx="'+cx+'" cy="'+(base+10)+'" rx="'+(cw*1.25)+'" ry="'+(cw*0.12)+'" fill="#0b0b0c" opacity=".12"/>';
+  out+='<ellipse cx="'+cx+'" cy="'+(base+10)+'" rx="'+(cw*1.25)+'" ry="'+(cw*0.12)+'" fill="#7c5cff" opacity=".25"/>';
   CATS.forEach((c,i)=>{
-    const ink=c.shade==='#0b0b0c'?'#b8f5d0':'#0b0b0c';
+    const ink='#ffffff';
     const items=P.filter(p=>p[1]===c.id);
     const x=cx-cw/2,y=base-ch;
     out+='<g class="card" tabindex="0" role="button" aria-label="'+esc(L(c.name))+'" data-c="'+c.id+'" style="transform-origin:'+cx+'px '+(base+ch*0.2)+'px;transform:rotate('+(spread?angs[i]:0)+'deg)" data-a="'+angs[i]+'"><g class="lift"><g class="bob" style="animation-delay:'+(i*0.6)+'s">';
     out+='<rect x="'+(x+6)+'" y="'+(y+8)+'" width="'+cw+'" height="'+ch+'" rx="18" fill="#0b0b0c" opacity=".18"/>';
-    out+='<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="'+ch+'" rx="18" class="face" fill="'+c.shade+'" stroke="#0b0b0c" stroke-width="2"/>';
+    out+='<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="'+ch+'" rx="18" class="face" fill="'+c.shade+'" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>';
     out+='<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="'+(ch*0.5)+'" rx="18" fill="url(#gl)"/>';
     out+='<rect x="'+(x+16)+'" y="'+(y+18)+'" width="'+(cw*0.22)+'" height="'+(cw*0.16)+'" rx="5" fill="none" stroke="'+ink+'" stroke-width="2"/>';
     out+='<line x1="'+(x+16+cw*0.11)+'" y1="'+(y+18)+'" x2="'+(x+16+cw*0.11)+'" y2="'+(y+18+cw*0.16)+'" stroke="'+ink+'" stroke-width="1.5"/>';
