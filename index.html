@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KedaiPremium</title>
+<title>KedaiPremium | Langganan AI Premium</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='48' fill='%23b8f5d0'/%3E%3Cg transform='translate(12 18) scale(.75)'%3E%3Cpath d='M10 56 L6 16 L30 36 L48 8 L66 36 L90 16 L86 56 Z' fill='%230b0b0c' stroke='%230b0b0c' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='48' cy='36' r='7' fill='%23b8f5d0'/%3E%3Crect x='10' y='58' width='76' height='9' rx='4.5' fill='%23128c4a'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -243,6 +243,20 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,[
 .motion{display:flex;justify-content:flex-start;padding:8px max(5vw,16px) 0}
 .motion button{min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.6);background:rgba(255,255,255,.08);color:#fff;font:600 14px Inter,sans-serif;cursor:pointer}
 .still *,.still *::before,.still *::after{animation:none!important;transition:none!important}
+/* FOKUS AI */
+.aiRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;animation:rise .8s .12s cubic-bezier(.2,.8,.2,1) both}
+.aiRow a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:14px;text-decoration:none;font:700 16px "Space Grotesk",sans-serif;color:#fff;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.28);transition:transform .2s ease,background .2s ease}
+.aiRow a:hover{transform:translateY(-2px);background:rgba(255,255,255,.18)}
+.aiRow a i{width:10px;height:10px;border-radius:50%;background:var(--d)}
+.group.feat{position:relative;padding:22px;border-radius:26px;background:linear-gradient(135deg,rgba(124,92,255,.22),rgba(34,211,238,.12));border:1.5px solid rgba(167,139,250,.45)}
+.group.feat .ghead h3{font-size:clamp(26px,3vw,34px)}
+.group.feat .grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.group.feat .cover{height:150px}
+.group.feat .cover .big{font-size:36px}
+.group.feat .prod{border-color:rgba(167,139,250,.55)}
+.ghead .badge{display:inline-flex;align-items:center;min-height:30px;padding:0 12px;border-radius:999px;font:700 13px Inter,sans-serif;background:#fde047;color:#111}
+.gsub{font-size:15px;color:var(--mute);margin:-6px 0 16px}
+.prod{scroll-margin-top:90px}
 </style>
 </head>
 <body>
@@ -265,12 +279,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,[
 <header class="hero band" id="top">
   <div class="wrap heroin">
     <div>
-      <h1 data-t="h1">Langganan premium AI, edit video dan streaming di satu tempat</h1>
-      <p class="lead" data-t="lead">Pilih aplikasi yang anda perlukan, hubungi kami di WhatsApp, dan akses dihantar terus kepada anda. Mudah, cepat dan dibantu sehingga berjaya log masuk.</p>
+      <h1 data-t="h1">Langganan AI premium dengan harga mampu milik</h1>
+      <p class="lead" data-t="lead">Claude, ChatGPT, Gemini dan Muse untuk kerja, belajar dan buat kandungan. Tempah di WhatsApp, akses dihantar terus kepada anda. Kami juga ada aplikasi edit video dan streaming.</p>
+      <div class="aiRow"><a href="#p-Claude" style="--d:#f59e5b"><i></i>Claude</a><a href="#p-ChatGPT" style="--d:#10a37f"><i></i>ChatGPT</a><a href="#p-Gemini" style="--d:#4f8bff"><i></i>Gemini</a><a href="#p-Muse" style="--d:#c084fc"><i></i>Muse</a></div>
       <div class="trust"><span data-t="tr1">Full warranty</span><span data-t="tr2">Akaun private</span><span data-t="tr3">Bantuan WhatsApp</span></div>
       <div class="facts">
+        <div><b id="nAi">4</b><span data-t="fAi">produk AI premium</span></div>
         <div><b id="nProd">11</b><span data-t="fApps">aplikasi premium</span></div>
-        <div><b id="nCat">3</b><span data-t="fCats">kategori</span></div>
         <div><b id="minP">RM18</b><span data-t="fFrom">harga bermula</span></div>
       </div>
       <div class="cta">
@@ -370,8 +385,8 @@ const PHONE='60107627782';
 const PHONE_TXT='010-762 7782';
 const T={
 ms:{nProd:'Produk',nHow:'Cara beli',nFaq:'Soalan lazim',nContact:'Hubungi',waUs:'WhatsApp kami',
-h1:'Langganan premium AI, edit video dan streaming di satu tempat',
-lead:'Pilih aplikasi yang anda perlukan, hubungi kami di WhatsApp, dan akses dihantar terus kepada anda. Mudah, cepat dan dibantu sehingga berjaya log masuk.',
+h1:'Langganan AI premium dengan harga mampu milik',
+lead:'Claude, ChatGPT, Gemini dan Muse untuk kerja, belajar dan buat kandungan. Tempah di WhatsApp, akses dihantar terus kepada anda. Kami juga ada aplikasi edit video dan streaming.',fAi:'produk AI premium',featT:'Produk AI utama',featB:'Pilihan utama',featS:'Pembantu AI premium untuk menulis, belajar, kerja dan buat kandungan.',otherT:'Produk lain',
 fApps:'aplikasi premium',soon:'Akan datang',locked:'Belum boleh ditempah',soonTxt:'Akan datang. Harga dan pakej akan dikemas kini tidak lama lagi.',tr1:'Full warranty',tr2:'Akaun private',tr3:'Bantuan WhatsApp',fFrom:'harga bermula',from:'Dari ',wTitle:'Kenapa pilih KedaiPremium?',w1h:'Full warranty',w1p:'Kebanyakan produk dilindungi warranty sepanjang tempoh langganan.',w2h:'Akaun private',w2p:'Pilihan akaun private untuk kebanyakan produk, bukan dikongsi ramai.',w3h:'Proses pantas',w3p:'Tempah di WhatsApp, bayar, dan akses dihantar terus kepada anda.',w4h:'Bantuan mesra',w4p:'Kami bantu sehingga anda berjaya log masuk, dalam BM atau English.',fCats:'kategori',fWa:'tempahan dan bantuan',ctaAll:'Lihat semua produk',ctaAsk:'Tanya harga',
 pTitle:'Senarai produk kami',search:'Cari aplikasi',all:'Semua',count:(a,b)=>a+' daripada '+b+' aplikasi dipaparkan',
 empty:'Tiada aplikasi ditemui. Cuba carian lain atau tanya kami di WhatsApp.',ask:'Harga: tanya di WhatsApp',order:'Tempah di WhatsApp',
@@ -389,8 +404,8 @@ about:'Kedai langganan aplikasi premium. Tempahan dan bantuan melalui WhatsApp.'
 legal:'KedaiPremium bukan wakil rasmi dan tidak bergabung dengan syarikat pemilik aplikasi yang disenaraikan. Semua nama produk dan tanda dagangan adalah milik pemilik masing-masing.',
 fx:'Harga USD ialah anggaran (1 USD ≈ RM4.10). Bayaran sebenar dibuat dalam RM.',skip:'Langkau ke kandungan',stopAnim:'Hentikan animasi',playAnim:'Mainkan animasi',pickCat:'Pilih kategori',newTab:'buka WhatsApp dalam tab baharu',waFab:'Hubungi kami di WhatsApp',msgGen:'Salam, saya nak tanya harga langganan premium.',msgP:n=>'Salam, saya nak tanya harga dan pakej '+n+'.'},
 en:{nProd:'Products',nHow:'How to buy',nFaq:'FAQ',nContact:'Contact',waUs:'WhatsApp us',
-h1:'Premium AI, video editing and streaming subscriptions in one place',
-lead:'Choose the app you need, message us on WhatsApp, and your access is sent straight to you. Easy, fast, and we help until you are logged in.',
+h1:'Premium AI subscriptions at friendly prices',
+lead:'Claude, ChatGPT, Gemini and Muse for work, study and content creation. Order on WhatsApp and your access is sent straight to you. We also offer video editing and streaming apps.',fAi:'premium AI products',featT:'Main AI products',featB:'Top pick',featS:'Premium AI assistants for writing, study, work and content creation.',otherT:'Other products',
 fApps:'premium apps',soon:'Coming soon',locked:'Not available yet',soonTxt:'Coming soon. Prices and packages will be updated shortly.',tr1:'Full warranty',tr2:'Private accounts',tr3:'WhatsApp support',fFrom:'starting price',from:'From ',wTitle:'Why choose KedaiPremium?',w1h:'Full warranty',w1p:'Most products are covered by warranty for the whole subscription.',w2h:'Private accounts',w2p:'Private account options for most products, not shared with strangers.',w3h:'Fast process',w3p:'Order on WhatsApp, pay, and your access is sent straight to you.',w4h:'Friendly support',w4p:'We help until you are logged in, in Malay or English.',fCats:'categories',fWa:'orders and support',ctaAll:'See all products',ctaAsk:'Ask for prices',
 pTitle:'Our products',search:'Search apps',all:'All',count:(a,b)=>'Showing '+a+' of '+b+' apps',
 empty:'No apps found. Try another search or ask us on WhatsApp.',ask:'Price: ask on WhatsApp',order:'Order on WhatsApp',
@@ -415,18 +430,18 @@ const CATS=[
 ];
 const WT=['Wajib tanya stok dahulu sebelum bayar.','Please ask for stock availability before paying.'];
 const P=[
-  ['Gemini','ai',['Pembantu AI Google untuk menulis, mencari idea dan merancang.','Google’s AI assistant for writing, ideas and planning.'],
-    [[['3 bulan','3 months'],'RM25'],[['12 bulan','12 months'],'RM30'],[['18 bulan','18 months'],'RM35']],
-    [['Akaun private','Private account'],['Full warranty','Full warranty'],['Wajib guna akaun Gmail pembeli','Buyer’s own Gmail required']],
-    [['Plan 18 bulan tidak perlu beri kata laluan.','The 18-month plan does not need your password.']]],
-  ['ChatGPT','ai',['Chatbot AI untuk menulis, menjawab soalan dan membantu kerja harian.','AI chatbot for writing, answering questions and everyday work.'],
-    [[['ChatGPT Go, 3 bulan','ChatGPT Go, 3 months'],'RM40'],[['ChatGPT Plus, 1 bulan','ChatGPT Plus, 1 month'],'RM45'],[['ChatGPT Plus, 3 bulan','ChatGPT Plus, 3 months'],'RM115']],
-    [['Akaun private','Private account'],['Full warranty','Full warranty']],
-    [['ChatGPT Plus boleh guna emel sendiri. ChatGPT Go tidak boleh guna emel sendiri.','ChatGPT Plus can use your own email. ChatGPT Go cannot use your own email.'],WT]],
   ['Claude','ai',['Pembantu AI untuk menulis, menganalisis dokumen dan membina idea.','AI assistant for writing, analysing documents and building ideas.'],
     [[['Claude AI Pro, 1 bulan','Claude AI Pro, 1 month'],'RM90']],
     [['Akaun private','Private account'],['Wajib guna akaun @gmail.com pembeli','Buyer’s own @gmail.com required'],['Full warranty','Full warranty']],
     [['Dilarang berkongsi akaun, guna VPN, atau guna third-party seperti spam, 9Router, proxy atau sejenisnya. Melanggar syarat: tiada warranty.','No account sharing, no VPN, and no third-party tools such as spam, 9Router, proxies or similar. Breaking these rules voids the warranty.'],WT]],
+  ['ChatGPT','ai',['Chatbot AI untuk menulis, menjawab soalan dan membantu kerja harian.','AI chatbot for writing, answering questions and everyday work.'],
+    [[['ChatGPT Go, 3 bulan','ChatGPT Go, 3 months'],'RM40'],[['ChatGPT Plus, 1 bulan','ChatGPT Plus, 1 month'],'RM45'],[['ChatGPT Plus, 3 bulan','ChatGPT Plus, 3 months'],'RM115']],
+    [['Akaun private','Private account'],['Full warranty','Full warranty']],
+    [['ChatGPT Plus boleh guna emel sendiri. ChatGPT Go tidak boleh guna emel sendiri.','ChatGPT Plus can use your own email. ChatGPT Go cannot use your own email.'],WT]],
+  ['Gemini','ai',['Pembantu AI Google untuk menulis, mencari idea dan merancang.','Google’s AI assistant for writing, ideas and planning.'],
+    [[['3 bulan','3 months'],'RM25'],[['12 bulan','12 months'],'RM30'],[['18 bulan','18 months'],'RM35']],
+    [['Akaun private','Private account'],['Full warranty','Full warranty'],['Wajib guna akaun Gmail pembeli','Buyer’s own Gmail required']],
+    [['Plan 18 bulan tidak perlu beri kata laluan.','The 18-month plan does not need your password.']]],
   ['Muse','ai',['Alat AI kreatif untuk menjana gambar dan video.','Creative AI tool for generating images and video.'],
     [[['Akaun Muse AI 1B Token','Muse AI account, 1B tokens'],'RM15'],[['Akaun Muse AI Video 1B Token','Muse AI Video account, 1B tokens'],'RM30']],
     [['Akaun private','Private account'],['Akaun & token kekal','Account & tokens never expire'],['Boleh tukar emel & kata laluan','Email & password can be changed']],
@@ -488,7 +503,7 @@ const card=(p,i,lv)=>{
   const hx=lv||'h3';
   const mn=minOf(p);
   const h=HUES[P.indexOf(p)%HUES.length];
-  let o='<article class="prod'+(p[3]==='soon'?' lock':'')+'" style="animation-delay:'+(i*0.04).toFixed(2)+'s"><div class="cover" style="--h1:'+h[0]+';--h2:'+h[1]+'">'+ICON[p[1]]+(mn?'<span class="from">'+esc(t('from')+money('RM'+mn))+'</span>':p[3]==='soon'?'<span class="from soonb">'+esc(t('soon'))+'</span>':'')+'<'+hx+' class="big">'+esc(p[0])+'</'+hx+'></div><span class="cat">'+esc(catName(p[1]))+'</span><p>'+esc(L(p[2]))+'</p>';
+  let o='<article id="p-'+esc(p[0].replace(/[^A-Za-z0-9]/g,''))+'" class="prod'+(p[3]==='soon'?' lock':'')+'" style="animation-delay:'+(i*0.04).toFixed(2)+'s"><div class="cover" style="--h1:'+h[0]+';--h2:'+h[1]+'">'+ICON[p[1]]+(mn?'<span class="from">'+esc(t('from')+money('RM'+mn))+'</span>':p[3]==='soon'?'<span class="from soonb">'+esc(t('soon'))+'</span>':'')+'<'+hx+' class="big">'+esc(p[0])+'</'+hx+'></div><span class="cat">'+esc(catName(p[1]))+'</span><p>'+esc(L(p[2]))+'</p>';
   if(p[4])o+='<div class="tags">'+p[4].map(x=>'<span>'+esc(L(x))+'</span>').join('')+'</div>';
   o+=p[3]==='soon'?'<div class="soonbox">'+esc(t('soonTxt'))+'</div>':p[3]?'<ul class="pk">'+p[3].map(k=>'<li><span>'+esc(L(k[0]))+'</span><b>'+esc(money(k[1]))+'</b></li>').join('')+'</ul>':'<div class="ask">'+esc(t('ask'))+'</div>';
   if(p[6])o+=p[6].map(n=>{const x=L(n),k=x.indexOf('? ');return '<div class="info">'+(k>0?'<b>'+esc(x.slice(0,k+1))+'</b>'+esc(x.slice(k+2)):esc(x))+'</div>';}).join('');
@@ -501,7 +516,7 @@ const render=()=>{
   const list=P.filter(p=>(cur==='all'||p[1]===cur)&&(!s||p[0].toLowerCase().includes(s)||p[2].join(' ').toLowerCase().includes(s)));
   count.textContent=t('count')(list.length,P.length);
   if(!list.length){grid.className='';grid.innerHTML='<div class="empty">'+esc(t('empty'))+'</div>';return;}
-  if(cur==='all'&&!s){grid.className='';let k=0;grid.innerHTML=CATS.map(c=>{const it=list.filter(p=>p[1]===c.id);return '<div class="group"><div class="ghead"><h3>'+esc(L(c.name))+'</h3><span>'+it.length+'</span></div><div class="grid">'+it.map(p=>card(p,k++,'h4')).join('')+'</div></div>';}).join('');}
+  if(cur==='all'&&!s){grid.className='';let k=0;grid.innerHTML=CATS.map(c=>{const it=list.filter(p=>p[1]===c.id);const f=c.id==='ai';return '<div class="group'+(f?' feat':'')+'"><div class="ghead"><h3>'+esc(f?t('featT'):t('otherT')+': '+L(c.name))+'</h3>'+(f?'<span class="badge">'+esc(t('featB'))+'</span>':'<span>'+it.length+'</span>')+'</div>'+(f?'<p class="gsub">'+esc(t('featS'))+'</p>':'')+'<div class="grid">'+it.map(p=>card(p,k++,'h4')).join('')+'</div></div>';}).join('');}
   else{grid.className='grid';grid.innerHTML=list.map((p,i)=>card(p,i,'h3')).join('');}
 };
 const applyLang=()=>{
@@ -532,7 +547,8 @@ q.addEventListener('input',render);
 document.getElementById('phoneTxt').textContent=PHONE_TXT;
 document.getElementById('phoneFoot').textContent=PHONE_TXT;
 document.getElementById('nProd').textContent=P.length;
-document.getElementById('nCat').textContent=CATS.length;
+document.getElementById('nAi').textContent=P.filter(p=>p[1]==='ai').length;
+document.querySelector('.aiRow').addEventListener('click',e=>{const l=e.target.closest('a');if(!l)return;e.preventDefault();cur='all';q.value='';renderChips();render();const el=document.querySelector(l.getAttribute('href'));if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.querySelector('a')?.focus({preventScroll:true});}});
 const tt=document.getElementById('totop');addEventListener('scroll',()=>tt.classList.toggle('on',scrollY>600),{passive:true});tt.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 const mq=P.map(p=>'<span>'+esc(p[0])+'</span>').join('');document.getElementById('marq').innerHTML=mq+mq;
 
@@ -542,10 +558,10 @@ function draw(){
   const W=s.clientWidth,H=s.clientHeight;if(!W||!H)return;
   const cw=Math.min(W*0.52,270,(H-100)/1.42),ch=cw*1.42;
   const cx=W/2,base=(H+ch)/2+24;
-  const angs=CATS.map((c,i)=>(i-(CATS.length-1)/2)*16);
+  const ORD=['edit','stream','ai'];const angs=CATS.map(c=>({edit:-16,stream:16,ai:0})[c.id]);
   let out='<title id="fanLbl">'+esc(t('pickCat'))+'</title><defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>';
   out+='<ellipse cx="'+cx+'" cy="'+(base+10)+'" rx="'+(cw*1.25)+'" ry="'+(cw*0.12)+'" fill="#7c5cff" opacity=".25"/>';
-  CATS.forEach((c,i)=>{
+  CATS.slice().sort((a,b)=>ORD.indexOf(a.id)-ORD.indexOf(b.id)).forEach(c=>{const i=CATS.indexOf(c);
     const ink='#ffffff';
     const items=P.filter(p=>p[1]===c.id);
     const x=cx-cw/2,y=base-ch;
