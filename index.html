@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KedaiPremium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday kedai digital, mesra dan jelas
+   IDEA rak kad langganan prabayar di kaunter kedai telefon
+   PICTURE kipas kad langganan empat kategori atas medan mint
+   COLOUR putih/hitam, medan mint #b8f5d0, aksen hitam pekat; malam hitam dengan mint
+   TYPE Space Grotesk 700 + Inter
+   LAYOUT laptop: tajuk dan butang kiri, kipas kad kanan dalam medan mint; telefon: tajuk, kad, butang */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0a0b0a);--ink:light-dark(#0b0b0c,#f2f4f2);--mute:light-dark(#4d524f,#a9b2ac);--mint:light-dark(#b8f5d0,#173a27);--mint2:light-dark(#e6fbee,#112319);--line:light-dark(#dfe3e0,#2a302c);--card:light-dark(#ffffff,#141715);--acc:light-dark(#0b0b0c,#b8f5d0);--accInk:light-dark(#ffffff,#0a0b0a);--wa:#128c4a}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:76px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.02em;line-height:1.05;margin:0}
+h1{font-size:clamp(34px,5vw,52px);text-wrap:balance}
+h2{font-size:clamp(28px,3.4vw,38px);text-wrap:balance}
+h3{font-size:19px}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding-block:clamp(28px,4vw,64px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.navin{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:12px max(5vw,16px);max-width:1240px;margin:0 auto}
+.logo{font:700 21px "Space Grotesk",sans-serif;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo i{width:26px;height:26px;border-radius:7px;background:var(--mint);border:2px solid var(--ink);display:block}
+.links{display:flex;gap:18px;flex-wrap:wrap;margin-inline-start:auto;font-size:15px}
+.links a{text-decoration:none;color:var(--mute)}
+.links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;font:600 16px Inter,sans-serif;text-decoration:none;border:2px solid var(--acc);cursor:pointer;white-space:nowrap}
+.btn.pri{background:var(--acc);color:var(--accInk)}
+.btn.sec{background:transparent;color:var(--ink)}
+.btn.wa{background:var(--wa);border-color:var(--wa);color:#fff}
+.btn:focus-visible,.chip:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #2f7dff;outline-offset:2px}
+.hero{background:var(--mint)}
+.heroin{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(20px,4vw,56px);align-items:center}
+.lead{font-size:17px;color:var(--ink);opacity:.85;margin-top:16px;max-width:34em}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.facts{display:flex;gap:28px;flex-wrap:wrap;margin-top:30px}
+.facts b{display:block;font:700 26px "Space Grotesk",sans-serif}
+.facts span{font-size:14px;opacity:.8}
+.fig{position:relative;min-height:360px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:22px 0 24px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:500 15px Inter,sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--acc);color:var(--accInk);border-color:var(--acc)}
+.search{margin-inline-start:auto;position:relative}
+.search input{font:16px Inter,sans-serif;min-height:44px;width:min(260px,100%);padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.prod{background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.prod .top{display:flex;align-items:center;gap:12px}
+.mono{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font:700 19px "Space Grotesk",sans-serif;background:var(--mint2);border:1.5px solid var(--line)}
+.prod .cat{font-size:13px;color:var(--mute)}
+.prod p{font-size:15px;color:var(--mute);flex:1}
+.prod a{align-self:flex-start;font-weight:600;font-size:15px;text-decoration:none;border-bottom:2px solid var(--wa);padding-bottom:1px}
+.empty{padding:28px;border:1.5px dashed var(--line);border-radius:16px;text-align:center;color:var(--mute)}
+.count{font-size:14px;color:var(--mute);margin-top:6px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}
+.step{border-top:3px solid var(--ink);padding-top:16px}
+.step b{font:700 40px "Space Grotesk",sans-serif;display:block;margin-bottom:6px}
+.step p{color:var(--mute);margin-top:6px}
+.alt{background:var(--mint2)}
+.faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(20px,4vw,56px)}
+details{border-bottom:1.5px solid var(--line);padding:14px 0}
+summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font:700 22px "Space Grotesk",sans-serif;line-height:1}
+details[open] summary::after{content:"−"}
+details p{margin-top:8px;color:var(--mute)}
+.close{background:var(--acc);color:var(--accInk)}
+.closein{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.close .btn.wa{border-color:var(--wa)}
+.close p{opacity:.8;margin-top:10px}
+footer{border-top:1px solid var(--line);font-size:14px;color:var(--mute)}
+.foot{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:24px}
+footer h3{color:var(--ink);font-size:16px;margin-bottom:8px}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.legal{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:13px}
+@media(max-width:900px){.heroin{grid-template-columns:minmax(0,1fr)}.fig{min-height:300px;order:2}.cta{order:3}}
+@media(max-width:720px){.steps{grid-template-columns:minmax(0,1fr)}.faq{grid-template-columns:minmax(0,1fr)}.foot{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.search{margin-inline-start:0;width:100%}.search input{width:100%}}
+@media(max-width:600px){.links{display:none}.foot{grid-template-columns:minmax(0,1fr)}}
+.hero{position:relative;overflow:hidden;isolation:isolate}
+.hero::before,.hero::after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(60px);opacity:.55}
+.hero::before{width:420px;height:420px;background:light-dark(#ffffff,#2b7a52);top:-120px;left:-80px;animation:drift 14s ease-in-out infinite alternate}
+.hero::after{width:360px;height:360px;background:light-dark(#7fe0aa,#0f5a36);bottom:-140px;right:8%;animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(120px,60px) scale(1.15)}}
+.hero h1,.lead,.facts,.cta{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.lead{animation-delay:.1s}.facts{animation-delay:.2s}.cta{animation-delay:.3s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+.fan .card{transition:transform 1.1s cubic-bezier(.2,.9,.25,1.15)}
+.fan .bob{animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.marq{background:var(--acc);color:var(--accInk);overflow:hidden;padding:14px 0;border-block:2px solid var(--acc)}
+.marq .row{display:flex;gap:36px;width:max-content;animation:slide 40s linear infinite}
+.marq span{font:700 20px "Space Grotesk",sans-serif;white-space:nowrap;display:flex;align-items:center;gap:36px}
+.marq span::after{content:"";width:10px;height:10px;border-radius:50%;background:#b8f5d0}
+.marq:hover .row{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.prod{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+.prod:hover{transform:translateY(-5px);box-shadow:0 14px 30px -14px rgba(11,11,12,.35);border-color:var(--ink)}
+.prod:hover .mono{background:var(--mint);transform:rotate(-8deg)}
+.mono{transition:transform .3s ease,background .3s ease}
+.btn{transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px -8px rgba(11,11,12,.4)}
+.fab{position:fixed;right:18px;bottom:18px;z-index:9;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.45)}
+.fab::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--wa);animation:pulse 2.2s ease-out infinite;z-index:-1}
+@keyframes pulse{to{transform:scale(1.7);opacity:0}}
+.fab svg{width:30px;height:30px}
+.step{animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.step:nth-child(2){animation-delay:.12s}.step:nth-child(3){animation-delay:.24s}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="navin">
+    <a class="logo" href="#top"><i></i>KedaiPremium</a>
+    <div class="links">
+      <a href="#produk">Produk</a>
+      <a href="#cara">Cara beli</a>
+      <a href="#soalan">Soalan lazim</a>
+      <a href="#hubungi">Hubungi</a>
+    </div>
+    <a class="btn wa" id="navWa" href="#">WhatsApp kami</a>
+  </div>
+</nav>
+
+<header class="hero band" id="top">
+  <div class="wrap heroin">
+    <div>
+      <h1>Langganan premium AI, edit video dan streaming di satu tempat</h1>
+      <p class="lead">Pilih aplikasi yang anda perlukan, hubungi kami di WhatsApp, dan akses dihantar terus kepada anda. Mudah, cepat dan dibantu sehingga berjaya log masuk.</p>
+      <div class="facts">
+        <div><b id="nProd">24</b><span>aplikasi premium</span></div>
+        <div><b>4</b><span>kategori</span></div>
+        <div><b>WhatsApp</b><span>tempahan dan bantuan</span></div>
+      </div>
+      <div class="cta">
+        <a class="btn pri" href="#produk">Lihat semua produk</a>
+        <a class="btn sec" id="heroWa" href="#">Tanya harga</a>
+      </div>
+    </div>
+    <div class="fig" id="fig" aria-label="Kad langganan mengikut kategori: AI, edit, streaming, kerja dan belajar"><svg id="fan" class="fan" role="img"></svg></div>
+  </div>
+</header>
+
+<div class="marq" aria-hidden="true"><div class="row" id="marq"></div></div>
+
+<section class="band" id="produk">
+  <div class="wrap">
+    <h2>Senarai produk kami</h2>
+    <p class="count" id="count"></p>
+    <div class="tools">
+      <div class="chips" id="chips" role="group" aria-label="Tapis kategori"></div>
+      <label class="search"><input id="q" type="search" placeholder="Cari aplikasi" aria-label="Cari aplikasi"></label>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="band alt" id="cara">
+  <div class="wrap">
+    <h2>Cara membeli</h2>
+    <div class="steps">
+      <div class="step"><b>1</b><h3>Pilih aplikasi</h3><p>Cari aplikasi dalam senarai dan tekan butang tempah. Mesej WhatsApp akan terbuka dengan nama aplikasi sudah ditulis.</p></div>
+      <div class="step"><b>2</b><h3>Sahkan pakej dan bayar</h3><p>Kami akan beritahu harga, tempoh dan jenis akaun. Bayar melalui pindahan bank atau e-dompet selepas anda setuju.</p></div>
+      <div class="step"><b>3</b><h3>Terima akses</h3><p>Butiran akses dihantar melalui WhatsApp. Kami bantu sehingga anda berjaya log masuk dan guna.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="soalan">
+  <div class="wrap faq">
+    <div>
+      <h2>Soalan lazim</h2>
+      <p class="lead" style="color:var(--mute)">Tak jumpa jawapan? Tanya terus di WhatsApp.</p>
+    </div>
+    <div>
+      <details open><summary>Berapa lama akses dihantar?</summary><p>Biasanya dalam masa yang singkat selepas bayaran disahkan, pada waktu operasi.</p></details>
+      <details><summary>Akaun jenis apa yang saya dapat?</summary><p>Setiap produk ada jenis akaun dan tempoh yang berbeza. Kami akan terangkan dengan jelas sebelum anda membayar.</p></details>
+      <details><summary>Bagaimana cara bayar?</summary><p>Pindahan bank atau e-dompet. Butiran akaun bayaran diberi melalui WhatsApp.</p></details>
+      <details><summary>Kalau ada masalah log masuk?</summary><p>Hubungi kami di WhatsApp dan kami akan bantu sepanjang tempoh langganan anda.</p></details>
+      <details><summary>Boleh sambung langganan?</summary><p>Boleh. Hubungi kami sebelum tempoh tamat supaya akses tidak terputus.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="band close" id="hubungi">
+  <div class="wrap closein">
+    <div>
+      <h2>Sedia untuk langgan?</h2>
+      <p>WhatsApp <span id="phoneTxt"></span> untuk harga terkini dan tempahan.</p>
+    </div>
+    <a class="btn wa" id="closeWa" href="#">Tempah melalui WhatsApp</a>
+  </div>
+</section>
+
+<footer class="band">
+  <div class="wrap">
+    <div class="foot">
+      <div><h3>KedaiPremium</h3><p>Kedai langganan aplikasi premium. Tempahan dan bantuan melalui WhatsApp.</p></div>
+      <div><h3>Kategori</h3><ul id="footCats"></ul></div>
+      <div><h3>Hubungi</h3><ul><li>WhatsApp: <span id="phoneFoot"></span></li><li>Instagram dan TikTok: @kedaipremium</li><li>Waktu operasi: 10 pagi hingga 11 malam</li></ul></div>
+    </div>
+    <div class="legal">
+      <p>KedaiPremium bukan wakil rasmi dan tidak bergabung dengan syarikat pemilik aplikasi yang disenaraikan. Semua nama produk dan tanda dagangan adalah milik pemilik masing-masing.</p>
+      <p style="margin-top:6px">Draf: akaun media sosial dan waktu operasi ialah contoh.</p>
+    </div>
+  </div>
+</footer>
+
+<a class="fab" id="fab" href="#" aria-label="WhatsApp kami"><svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0a8.7 8.7 0 0 1-4.3-3.8c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1 2.1 3.2 5.1 4.5c1.9.8 2.6.9 3.6.7.6-.1 1.9-.8 2.1-1.5s.3-1.3.2-1.5-.2-.2-.5-.4z"/></svg></a>
+<script>
+{
+const PHONE='60107627782';
+const PHONE_TXT='010-762 7782';
+const CATS=[
+  {id:'ai',name:'AI',shade:'#b8f5d0'},
+  {id:'edit',name:'Edit video & gambar',shade:'#ffffff'},
+  {id:'stream',name:'Streaming & muzik',shade:'#0b0b0c'},
+  {id:'kerja',name:'Kerja & belajar',shade:'#e6fbee'}
+];
+const P=[
+  ['Gemini','ai','Pembantu AI Google untuk menulis, mencari idea dan merancang.'],
+  ['ChatGPT','ai','Chatbot AI untuk menulis, menjawab soalan dan membantu kerja harian.'],
+  ['Claude','ai','Pembantu AI untuk menulis, menganalisis dokumen dan membina idea.'],
+  ['ElevenLabs','ai','Suara AI untuk voiceover, alih suara dan bacaan teks.'],
+  ['Muse','ai','Alat AI kreatif. Tanya kami untuk butiran pakej.'],
+  ['CapCut','edit','Edit video untuk TikTok, Reels dan YouTube dengan ciri pro.'],
+  ['Canva','edit','Reka poster, kandungan media sosial dan persembahan.'],
+  ['Alight Motion','edit','Animasi dan motion graphics terus di telefon.'],
+  ['Lightroom','edit','Edit dan warnakan gambar dengan preset profesional.'],
+  ['Meitu','edit','Edit swafoto dan gambar potret dengan mudah.'],
+  ['Picsart','edit','Edit gambar, kolaj dan buang latar belakang.'],
+  ['Wink','edit','Tingkatkan kualiti dan kejelasan video.'],
+  ['Vision','edit','Tanya kami untuk butiran pakej.'],
+  ['Netflix','stream','Filem dan siri dari seluruh dunia.'],
+  ['Disney+','stream','Filem dan siri keluarga, animasi dan banyak lagi.'],
+  ['Prime Video','stream','Filem dan siri pilihan.'],
+  ['Viu','stream','Drama Korea, Asia dan rancangan tempatan.'],
+  ['WeTV','stream','Drama dan rancangan Asia.'],
+  ['iQIYI','stream','Drama Cina, Korea dan Asia.'],
+  ['Youku','stream','Drama dan rancangan Cina.'],
+  ['Spotify','stream','Muzik dan podcast tanpa iklan.'],
+  ['Microsoft','kerja','Word, Excel, PowerPoint dan storan awan.'],
+  ['Zoom','kerja','Mesyuarat dalam talian tanpa had masa.'],
+  ['Duolingo','kerja','Belajar bahasa tanpa iklan dan tanpa had.']
+];
+const wa=t=>'https://wa.me/'+PHONE+'?text='+encodeURIComponent(t);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const catName=id=>CATS.find(c=>c.id===id).name;
+let cur='all';
+const chips=document.getElementById('chips');
+const grid=document.getElementById('grid');
+const q=document.getElementById('q');
+const count=document.getElementById('count');
+const renderChips=()=>{
+  chips.innerHTML=[{id:'all',name:'Semua'},...CATS].map(c=>{
+    const n=c.id==='all'?P.length:P.filter(p=>p[1]===c.id).length;
+    return '<button class="chip" data-c="'+c.id+'" aria-pressed="'+(cur===c.id)+'">'+esc(c.name)+' ('+n+')</button>';
+  }).join('');
+};
+const render=()=>{
+  const s=q.value.trim().toLowerCase();
+  const list=P.filter(p=>(cur==='all'||p[1]===cur)&&(!s||p[0].toLowerCase().includes(s)||p[2].toLowerCase().includes(s)));
+  count.textContent=list.length+' daripada '+P.length+' aplikasi dipaparkan';
+  grid.innerHTML=list.length?list.map((p,i)=>'<article class="prod" style="animation-delay:'+(i*0.04).toFixed(2)+'s"><div class="top"><span class="mono" aria-hidden="true">'+esc(p[0][0])+'</span><div><h3>'+esc(p[0])+'</h3><span class="cat">'+esc(catName(p[1]))+'</span></div></div><p>'+esc(p[2])+'</p><a href="'+wa('Salam, saya nak tanya harga dan pakej '+p[0]+'.')+'" target="_blank" rel="noopener">Tempah di WhatsApp</a></article>').join('')
+    :'<div class="empty">Tiada aplikasi ditemui. Cuba carian lain atau tanya kami di WhatsApp.</div>';
+};
+chips.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;cur=b.dataset.c;renderChips();render();});
+q.addEventListener('input',render);
+for(const id of ['navWa','heroWa','closeWa','fab']){const a=document.getElementById(id);a.href=wa('Salam, saya nak tanya harga langganan premium.');a.target='_blank';a.rel='noopener';}
+document.getElementById('phoneTxt').textContent=PHONE_TXT;
+document.getElementById('phoneFoot').textContent=PHONE_TXT;
+document.getElementById('nProd').textContent=P.length;
+document.getElementById('footCats').innerHTML=CATS.map(c=>'<li>'+esc(c.name)+'</li>').join('');
+renderChips();render();
+const mq=P.map(p=>'<span>'+esc(p[0])+'</span>').join('');document.getElementById('marq').innerHTML=mq+mq;
+
+const s=document.getElementById('fan');
+let spread=false;
+const draw=()=>{
+  const W=s.clientWidth,H=s.clientHeight;if(!W||!H)return;
+  const cw=Math.min(W*0.46,230),ch=cw*1.42;
+  const cx=W/2,base=H*0.5+ch*0.42;
+  const angs=[-24,-8,8,24];
+  let out='<defs><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>';
+  out+='<ellipse cx="'+cx+'" cy="'+(base+10)+'" rx="'+(cw*1.25)+'" ry="'+(cw*0.12)+'" fill="#0b0b0c" opacity=".12"/>';
+  CATS.forEach((c,i)=>{
+    const dark=c.shade==='#0b0b0c';
+    const ink=dark?'#b8f5d0':'#0b0b0c';
+    const n=P.filter(p=>p[1]===c.id).length;
+    const names=P.filter(p=>p[1]===c.id).slice(0,3).map(p=>p[0]);
+    const x=cx-cw/2,y=base-ch;
+    out+='<g class="card" style="transform-origin:'+cx+'px '+(base+ch*0.2)+'px;transform:rotate('+(spread?angs[i]:0)+'deg)" data-a="'+angs[i]+'"><g class="bob" style="animation-delay:'+(i*0.6)+'s">';
+    out+='<rect x="'+(x+6)+'" y="'+(y+8)+'" width="'+cw+'" height="'+ch+'" rx="18" fill="#0b0b0c" opacity=".18"/>';
+    out+='<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="'+ch+'" rx="18" fill="'+c.shade+'" stroke="#0b0b0c" stroke-width="2"/>';
+    out+='<rect x="'+x+'" y="'+y+'" width="'+cw+'" height="'+(ch*0.5)+'" rx="18" fill="url(#gl)"/>';
+    out+='<rect x="'+(x+16)+'" y="'+(y+18)+'" width="'+(cw*0.22)+'" height="'+(cw*0.16)+'" rx="5" fill="none" stroke="'+ink+'" stroke-width="2"/>';
+    out+='<line x1="'+(x+16+cw*0.11)+'" y1="'+(y+18)+'" x2="'+(x+16+cw*0.11)+'" y2="'+(y+18+cw*0.16)+'" stroke="'+ink+'" stroke-width="1.5"/>';
+    out+='<text x="'+(x+16)+'" y="'+(y+ch*0.52)+'" fill="'+ink+'" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="'+Math.round(cw*0.24)+'">'+n+'</text>';
+    out+='<text x="'+(x+16)+'" y="'+(y+ch*0.52+22)+'" fill="'+ink+'" font-family="Inter,sans-serif" font-size="14" font-weight="600">'+esc(c.name.split(' ')[0])+'</text>';
+    if(cw>150)names.forEach((nm,j)=>{out+='<text x="'+(x+16)+'" y="'+(y+ch*0.72+j*18)+'" fill="'+ink+'" opacity=".75" font-family="Inter,sans-serif" font-size="13">'+esc(nm)+'</text>';});
+    out+='<text x="'+(x+cw-16)+'" y="'+(y+ch-16)+'" text-anchor="end" fill="'+ink+'" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="14">PREMIUM</text>';
+    out+='</g></g>';
+  });
+  s.setAttribute('viewBox','0 0 '+W+' '+H);
+  s.innerHTML=out;
+  if(!spread){spread=true;requestAnimationFrame(()=>requestAnimationFrame(()=>{for(const g of s.querySelectorAll('.card'))g.style.transform='rotate('+g.dataset.a+'deg)';}));}
+};
+const ro=new ResizeObserver(draw);ro.observe(document.getElementById('fig'));
+}
+</script>
+</body>
+</html>
